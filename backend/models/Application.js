@@ -6,8 +6,8 @@ const Schema = mongoose.Schema
 const applicationSchema = new Schema (
     {
         role: String,
-        type: String,
-        location: String, 
+        jobType: String,
+        experienceLevel: String, 
         company: String,
         location: [],
         appliedDate: {
