@@ -1,29 +1,28 @@
 const mongoose = require('mongoose');
 
-const dbHandler = require('./db-handler');
+const db = require('./db-handler');
 const applicationService = require('../src/services/application');
-const applicationModel = require('../models/Application');
+const applicationModel = require('../src/models/Application');
 
 /**
  * Connect to a new in-memory database before running any tests.
  */
-beforeAll(async () => await dbHandler.connect());
+beforeAll(async () => await db.connect());
 
 /**
  * Clear all test data after every test.
  */
-afterEach(async () => await dbHandler.clearDatabase());
+afterEach(async () => await db.clearDatabase());
 
 /**
  * Remove and close the db and server.
  */
-afterAll(async () => await dbHandler.closeDatabase());
+afterAll(async () => await db.closeDatabase());
 
 /**
  * Product test suite.
  */
 describe('application ', () => {
-
     /**
      * Tests that a valid application can be created through the applicationService without throwing any errors.
      */

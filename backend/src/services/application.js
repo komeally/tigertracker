@@ -1,6 +1,6 @@
 // src/services/product.js
 
-const applicationModel = require('../../models/Application');
+const applicationModel = require('../models/Application');
 
 /**
  * Stores a new product into the database.
