@@ -1,3 +1,8 @@
+/**
+ * Credits to Paula Santamariá
+ * https://dev.to/paulasantamaria/testing-node-js-mongoose-with-an-in-memory-database-32np
+ */ 
+
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const mongoose = require("mongoose");
 
