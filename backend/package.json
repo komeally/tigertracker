@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "listen": "nodemon index.js",
+    "server": "nodemon backend/server.js",
     "test": "jest"
   },
   "keywords": [],
