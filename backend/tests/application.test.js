@@ -39,8 +39,10 @@ describe('application ', () => {
             notes: "Working on creating a job description, verbal offer."
         };
 
-        const application = await createApplication(applicationForm.role, applicationForm.jobType, applicationForm.experienceLevel, applicationForm.company,
+        const {applicationId} = await createApplication(applicationForm.role, applicationForm.jobType, applicationForm.experienceLevel, applicationForm.company,
             applicationForm.location, applicationForm.appliedDate, applicationForm.status, applicationForm.notes)
+        
+        const application = await Application.findById(applicationId)
 
         expect(application.role).toEqual(applicationForm.role)
     });
