@@ -29,7 +29,7 @@ async function createApplication(role, jobType, experienceLevel, company, locati
 }
 
 async function getApplications() {
-   const foundApplications = await Application.find();
+   const foundApplications = await Application.find({});
 
    if (foundApplications.length === 0) {
     return "No applications found!";

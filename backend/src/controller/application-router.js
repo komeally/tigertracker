@@ -14,10 +14,10 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { role, jobType, experienceLevel, company, location, appliedDate, status, notes } = req.body;
     try {
-        const { applicationId } = await createApplication(role, jobType, experienceLevel, company, location, appliedDate, status, notes);
-        res.json({ applicationId });
+        const { applicationId } = await createApplication(req.body.role, req.body.jobType, req.body.experienceLevel, 
+        req.body.company, req.body.location, req.body.appliedDate, req.body.status, req.body.notes);
+        res.status(201).json({ applicationId });
     } catch (error) {
         res.status(400).json({
             message: error.message

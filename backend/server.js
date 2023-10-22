@@ -1,8 +1,13 @@
+require('dotenv').config()
+
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose')
+
+mongoose.connect(process.env.DATABASE_URL)
+app.use(express.json());
 
 const applicationRouter = require('./src/controller/application-router.js');
-
 app.use('/application', applicationRouter);
 
 app.get('/', async (req, res) => {
