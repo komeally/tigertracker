@@ -1,27 +1,28 @@
-const express = require('express');
-const {createApplication, getApplications} = require('./application-api');
-const router = express.Router()
+const { Router } = require('express');
+const { createApplication, getApplications } = require('./application-api.js');
 
-router.get('/', async (res) => {
+const router = Router();
+
+router.get('/', async (req, res) => {
     try {
-        res.json(await getApplications())
+        res.json(await getApplications());
     } catch (error) {
         res.status(400).json({
             message: error.message
-        })
+        });
     }
-})
+});
 
-router.post("/", async (req, res) => {
-    const {role, jobType, experienceLevel, company, location, appliedDate, status, notes} = req.body
+router.post('/', async (req, res) => {
+    const { role, jobType, experienceLevel, company, location, appliedDate, status, notes } = req.body;
     try {
-        const {applicationId} = await createApplication(role, jobType, experienceLevel, company, location, appliedDate, status, notes)
-        res.json({applicationId})
+        const { applicationId } = await createApplication(role, jobType, experienceLevel, company, location, appliedDate, status, notes);
+        res.json({ applicationId });
     } catch (error) {
         res.status(400).json({
             message: error.message
-        })
+        });
     }
-})
+});
 
-module.exports = router
+module.exports = router;
