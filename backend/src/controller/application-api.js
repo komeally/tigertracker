@@ -28,18 +28,23 @@ async function createApplication(role, jobType, experienceLevel, company, locati
     }
 }
 
-async function getApplications() {
-   const foundApplications = await Application.find({});
-
-   if (foundApplications.length === 0) {
-    return "No applications found!";
-   }
-
-
-   return foundApplications
+async function listApplications(id) {
+    try {
+        if (id === undefined) {
+            const foundApplications = await Application.find();
+            return foundApplications
+        }
+        else{
+            const foundApplication = await Application.findById(id)
+            return foundApplication
+        }  
+    } catch (error) {
+        throw error;
+    }
 }
+
 
 module.exports = {
     createApplication,
-    getApplications
+    listApplications
 };
