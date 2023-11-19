@@ -1,4 +1,4 @@
-const Application = require('../models/Application');
+const Application = require('../models/application');
 
 async function createApplication(role, jobType, experienceLevel, company, location, appliedDate, status, notes) {
     try {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { connect, clearDatabase, closeDatabase } = require('./db-handler');
 const { create } = require('../src/services/application');
-const Application = require('../src/models/Application');
+const Application = require('../src/models/application');
 const { createApplication } = require('../src/controller/application-api');
 
 

@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'axios'
+
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

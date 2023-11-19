@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const applicationApi = require('./application-api.js');
-const Application = require('../models/Application');
-
+const Application = require('../models/application');
 const router = Router();
 
 router.get('/', async (req, res) => {
@@ -13,7 +12,7 @@ router.get('/', async (req, res) => {
                 message: 'Application not found',
             });
         }
-
+        console.log("Got!");
         return res.json(applications);
     } catch (error) {
         res.status(500).json({
@@ -81,7 +80,6 @@ router.delete('/:id', getApplication, async (req, res) => {
 });
 
 
-
 //Middleware function to check if application exists
 async function getApplication(req, res, next) {
     let application
@@ -98,5 +96,4 @@ async function getApplication(req, res, next) {
     res.application = application
     next()
 }
-
 module.exports = router
