@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
                 message: 'Application not found',
             });
         }
-        console.log("Got!");
         return res.json(applications);
     } catch (error) {
         res.status(500).json({
@@ -53,21 +52,23 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.patch('/:id', getApplication, async (req, res) => {
-    reqData = ['role', 'jobType', 'experienceLevel', 'company', 'location', 'appliedDate', 'status', 'notes']
-
+router.put('/:id', getApplication, async (req, res) => {
+    reqData = ['role', 'jobType', 'experienceLevel', 'company', 'location', 'appliedDate', 'status', 'notes'];
+  
     try {
-        reqData.forEach((data) => {
-            if (req.body[data] !== null && req.body[data] !== undefined) {
-                res.application[data] = req.body[data]
-            }
-        });
-        const updatedApplication = await res.application.save()
-        res.json(updatedApplication)
+      reqData.forEach((data) => {
+        if (req.body[data] !== null && req.body[data] !== undefined) {
+          res.application[data] = req.body[data];
+        }
+      });
+  
+      const updatedApplication = await res.application.save();
+      res.json(updatedApplication);
     } catch (err) {
-      res.status(400).json({ message: err.message })
+      res.status(400).json({ message: err.message });
     }
-})
+});
+  
   
 // Delete One
 router.delete('/:id', getApplication, async (req, res) => {
