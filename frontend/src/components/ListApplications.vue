@@ -7,6 +7,7 @@
                 <th>Location</th>
                 <th>Applied Date</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,7 +18,9 @@
                 <td>{{ new Date(application.appliedDate).toLocaleDateString() }}</td>
                 <td>{{ application.status }}</td>
                 <td>
-                    <router-link :to="{name: 'update', params: { id: application._id }}" class="btn btn-success">Edit</router-link>  
+                    <router-link :to="{name: 'update', params: { id: application._id }}" class="btn btn-success">Edit</router-link>
+                    <button @click.prevent="deleteApplication(application._id)" class="btn btn-danger">Delete</button>
+                    <button @click.prevent="showDetails(application._id)" class="btn btn-secondary">View Details</button>  
                 </td>
             </tr>
         </tbody>
@@ -25,10 +28,13 @@
 </template>
 <script>
     import axios from "axios";
+    import ViewApplication from "./ViewApplication.vue";
     export default {
         data() {
             return {
-                Applications: []
+                Applications: [],
+                showDetailsModal: false,
+                selectedApplication: null,
             }
         },
         created() {
@@ -39,7 +45,22 @@
                 console.log(error.message)
             });
         },
-        methods: {}
+        methods: {
+            deleteApplication(id) {
+                let apiURL = `http://localhost:3000/application/${id}`;
+                let indexOfArrayItem = this.Applications.findIndex(i => i._id === id);
+                if (window.confirm("Do you really want to delete?")) {
+                    axios.delete(apiURL).then(() => {
+                        this.Applications.splice(indexOfArrayItem, 1);
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                }
+            }
+        },
+        components: {
+            ViewApplication
+        }
     }
 </script>
 <style scoped>
