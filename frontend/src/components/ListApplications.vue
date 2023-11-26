@@ -19,22 +19,22 @@
           <td>{{ new Date(application.appliedDate).toLocaleDateString() }}</td>
           <td>{{ application.status }}</td>
           <td>
-            <router-link :to="{ name: 'update', params: { id: application._id } }" class="btn btn-success">Edit</router-link>
+            <router-link :to="{ name: 'update', params: { id: application._id } }" class="btn btn-secondary">Edit</router-link>
+            <button @click="showDetailsModal(application)" class="btn btn-info">Details</button>
             <button @click.prevent="deleteApplication(application._id)" class="btn btn-danger">Delete</button>
-            <button @click="showDetailsModal(application)" class="btn btn-secondary">View Details</button>
           </td>
         </tr>
       </tbody>
     </table>
-
     <ViewApplication v-if="showDetails" :application="selectedApplication"></ViewApplication>
+    <RouterLink to="/create" class="btn btn-success">Add +</RouterLink>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import ViewApplication from "./ViewApplication.vue";
-import { useModalStore } from "../stores/ModalStore"; // Ensure correct import
+import { useModalStore } from "../stores/ModalStore";
 
 export default {
   data() {
@@ -99,6 +99,11 @@ export default {
   .table {
     width: 80%;
     margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .addButton {
     margin-left: auto;
     margin-right: auto;
   }
