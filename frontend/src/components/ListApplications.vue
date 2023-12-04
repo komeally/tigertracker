@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" v-if="Applications.length > 0">
       <thead class="thead-dark">
         <tr>
           <th>Role</th>
@@ -26,8 +26,14 @@
         </tr>
       </tbody>
     </table>
+    <div v-else>
+      <h4 style="text-align: center; margin-top: 5%;">No applications available. Please add some applications.</h4>
+    </div>
     <ViewApplication v-if="showDetails" :application="selectedApplication"></ViewApplication>
-    <RouterLink to="/create" class="btn btn-success">Add +</RouterLink>
+    <div class="addButton">
+      <RouterLink to="/create" class="btn btn-success">Add +</RouterLink>
+    </div>
+    
   </div>
 </template>
 
@@ -104,7 +110,8 @@ export default {
   }
 
   .addButton {
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

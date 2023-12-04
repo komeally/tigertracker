@@ -10,10 +10,7 @@ const applicationSchema = new Schema (
         experienceLevel: String, // level of experience e.g. Senior/Internship
         company: String, // name of company e.g. Google
         location: String, // Rochester, Syracuse, New York
-        appliedDate: { // date of application
-            type: Date, 
-            default: null // default null, in the case of adding an application to a wishlist
-        },
+        appliedDate: String, // Applied date, mm/dd/yyyy
         status: String, // status of application e.g. applied, rejected
         notes: String // general notes about the application
     }
